@@ -1,4 +1,4 @@
-package oopsfundamentals.enums;
+package oopsfundamentals.enums.orderprocessing;
 
 public enum OrderStatus {
     PLACED,
@@ -6,4 +6,4 @@ public enum OrderStatus {
     SHIPPED,
     DELIVERED,
     CANCELLED
-} 
+}
