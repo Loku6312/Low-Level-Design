@@ -1,4 +1,4 @@
-package oopsfundamentals;
+package oopsfundamentals.enums;
 
 public enum OrderStatus {
     PLACED,
