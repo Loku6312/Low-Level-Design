@@ -42,6 +42,7 @@ public class Order {
                 + "orderId='" + orderId + '\''
                 + ", status=" + status
                 + ", totalAmount=" + totalAmount
+                + ", paymentMethod=" + paymentMethod
                 + '}';
     }
 
@@ -56,17 +57,18 @@ public class Order {
                 return true;
             }
             case DELIVERED -> {
-                System.out.println("Order is already delivered. Cannot advance status.");
-                return false;
+                return false; // Order is already delivered. Cannot advance status.
             }
             default -> {
-                System.out.println("Unknown order status. Cannot advance.");
-                return false;
+                return false; // Unknown order status. Cannot advance.
             }
         }
     }
 
     public double totalWithFees() {
+        if (paymentMethod == null) {
+            throw new IllegalStateException("Payment method is not set");
+        }
         return totalAmount + totalAmount * paymentMethod.getValue() / 100;
     }
 
@@ -74,10 +76,10 @@ public class Order {
         Order order1 = new Order("12345", 100, PaymentMethod.CREDIT_CARD);
         System.out.println(order1);
 
-        order1.advanceStatus();
-        System.out.println("Updated Order1: " + order1);
-        order1.advanceStatus();
-        System.out.println("Updated Order1: " + order1);
+        boolean advanced = order1.advanceStatus();
+        System.out.println("Advance successful: " + advanced + " - Updated Order1: " + order1);
+        advanced = order1.advanceStatus();
+        System.out.println("Advance successful: " + advanced + " - Updated Order1: " + order1);
         System.out.println("Total with fees: " + order1.totalWithFees());
     }
 }
