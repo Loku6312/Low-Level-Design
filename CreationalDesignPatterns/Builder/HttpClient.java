@@ -11,5 +11,10 @@ public class HttpClient {
         System.out.println(get);
         System.out.println(post);
         System.out.println(put);
+        HttpRequestDirector director = new HttpRequestDirector();
+        System.out.println(director.buildSampleGet());
+        System.out.println(director.buildSamplePost());
+        System.out.println(director.buildSamplePut());
+
     }
 }
